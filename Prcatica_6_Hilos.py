@@ -11,6 +11,7 @@ class move_image:
         self.image = image
         self.direction = direction
         self.limit_date = False
+        self.Continue = True
 
     def insert(self):
         self.lbl_image = Label(self.window, image=self.image)
@@ -31,7 +32,7 @@ class move_image:
         return date
     
     def move_image(self, date_x, date_y):
-        while True:
+        while self.Continue:
             if self.direction == "left_to_right":
                 date_x = self.increase_or_decrease(date_x)
             elif self.direction == "up_to_bottom":
@@ -40,7 +41,8 @@ class move_image:
             time.sleep(0.15)
 
 def finalizar():
-    pass
+    app.Continue = False
+    app_2.Continue = False
     
 
 if __name__ == "__main__":
