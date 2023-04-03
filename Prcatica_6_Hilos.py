@@ -40,6 +40,9 @@ class move_image:
             self.lbl_image.place(x=date_x, y=date_y)
             time.sleep(0.15)
 
+def finalizar():
+    pass
+    
 
 if __name__ == "__main__":
     window = Tk()
@@ -50,13 +53,13 @@ if __name__ == "__main__":
     new_image = image.resize((100, 100))
     render = ImageTk.PhotoImage(new_image)
 
-    frame = Frame(window)
-    frame.place(x=0, y=100, width=500,height=500)
+    btn_finalizar = Button(window,text="Finalizar", command=finalizar)
+    btn_finalizar.place(x=250,y=250)
 
     thread = threading.Thread(name="Hilo_1", target=move_image, args=(
-        frame, render, "left_to_right", ))
+        window, render, "left_to_right", ))
     thread_2 = threading.Thread(
-        name="Hilo_2", target=move_image, args=(frame, render, "up_to_bottom", ))
+        name="Hilo_2", target=move_image, args=(window, render, "up_to_bottom", ))
 
     thread.start()
     thread_2.start()
