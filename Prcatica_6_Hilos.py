@@ -22,3 +22,11 @@ class move_image:
             self.limit_date = True
         elif date_x_or_y <= 0:
             self.limit_date = False
+    
+    def increase_or_decrease(self, date):
+        self.limit(date)
+        if self.limit_date:
+            date -= 5
+        else:
+            date += 5
+        return date
