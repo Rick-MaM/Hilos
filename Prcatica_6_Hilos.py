@@ -40,7 +40,7 @@ class move_image:
             self.lbl_image.place(x=date_x, y=date_y)
             time.sleep(0.15)
 
-def finalizar():
+def end():
     app.Continue = False
     app_2.Continue = False
     
