@@ -11,3 +11,7 @@ class move_image:
         self.image = image
         self.direction = direction
         self.limit_date = False
+
+    def insert(self):
+        self.lbl_image = Label(self.window, image=self.image)
+        self.move_image(0,0)
