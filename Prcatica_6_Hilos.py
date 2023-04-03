@@ -3,7 +3,6 @@ from PIL import Image, ImageTk
 import threading
 import time
 
-
 class move_image:
 
     def __init__(self, window, image, direction):
@@ -43,22 +42,26 @@ class move_image:
 def end():
     app.Continue = False
     app_2.Continue = False
-    
+
+def open_image(name):
+    image = Image.open(name)
+    new_image = image.resize((100, 100))
+    render = ImageTk.PhotoImage(new_image)
+    return render
 
 if __name__ == "__main__":
     window = Tk()
     window.title("Hilos")
     window.geometry("500x600")
 
-    image = Image.open('DVD.jpg')
-    new_image = image.resize((100, 100))
-    render = ImageTk.PhotoImage(new_image)
-
-    btn_finalizar = Button(window,text="Finalizar", command=finalizar)
+    btn_finalizar = Button(window,text="Finalizar", command=end)
     btn_finalizar.place(x=250,y=250)
 
-    app = move_image(window, render, "left_to_right", )
-    app_2 = move_image(window, render, "up_to_bottom")
+    image_1 = open_image("DVD.jpg")
+    image_2 = open_image("Batman.jpg")
+
+    app = move_image(window, image_1, "left_to_right", )
+    app_2 = move_image(window, image_2, "up_to_bottom")
     thread = threading.Thread(name="Hilo_1", target=app.insert)
     thread_2 = threading.Thread(name="Hilo_2", target=app_2.insert)
 
