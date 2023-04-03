@@ -39,3 +39,23 @@ class move_image:
                 date_y = self.increase_or_decrease(date_y)
             self.lbl_image.place(x=date_x, y=date_y)
             time.sleep(0.15)
+
+
+if __name__ == "__main__":
+    window = Tk()
+    window.title("Hilos")
+    window.geometry("500x500")
+
+    image = Image.open('DVD.jpg')
+    new_image = image.resize((100, 100))
+    render = ImageTk.PhotoImage(new_image)
+
+    thread = threading.Thread(name="Hilo_1", target=move_image, args=(
+        window, render, "left_to_right", ))
+    thread_2 = threading.Thread(
+        name="Hilo_2", target=move_image, args=(window, render, "up_to_bottom", ))
+
+    thread.start()
+    thread_2.start()
+
+    window.mainloop()
