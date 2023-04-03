@@ -11,7 +11,6 @@ class move_image:
         self.image = image
         self.direction = direction
         self.limit_date = False
-        self.insert()
 
     def insert(self):
         self.lbl_image = Label(self.window, image=self.image)
@@ -56,10 +55,10 @@ if __name__ == "__main__":
     btn_finalizar = Button(window,text="Finalizar", command=finalizar)
     btn_finalizar.place(x=250,y=250)
 
-    thread = threading.Thread(name="Hilo_1", target=move_image, args=(
-        window, render, "left_to_right", ))
-    thread_2 = threading.Thread(
-        name="Hilo_2", target=move_image, args=(window, render, "up_to_bottom", ))
+    app = move_image(window, render, "left_to_right", )
+    app_2 = move_image(window, render, "up_to_bottom")
+    thread = threading.Thread(name="Hilo_1", target=app.insert)
+    thread_2 = threading.Thread(name="Hilo_2", target=app_2.insert)
 
     thread.start()
     thread_2.start()
