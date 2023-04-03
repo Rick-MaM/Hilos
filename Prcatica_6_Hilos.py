@@ -44,16 +44,19 @@ class move_image:
 if __name__ == "__main__":
     window = Tk()
     window.title("Hilos")
-    window.geometry("500x500")
+    window.geometry("500x600")
 
     image = Image.open('DVD.jpg')
     new_image = image.resize((100, 100))
     render = ImageTk.PhotoImage(new_image)
 
+    frame = Frame(window)
+    frame.place(x=0, y=100, width=500,height=500)
+
     thread = threading.Thread(name="Hilo_1", target=move_image, args=(
-        window, render, "left_to_right", ))
+        frame, render, "left_to_right", ))
     thread_2 = threading.Thread(
-        name="Hilo_2", target=move_image, args=(window, render, "up_to_bottom", ))
+        name="Hilo_2", target=move_image, args=(frame, render, "up_to_bottom", ))
 
     thread.start()
     thread_2.start()
